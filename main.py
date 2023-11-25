@@ -1,4 +1,6 @@
+import datetime
 import json
+
 
 # Функция для загрузки заметок из файла
 def load_notes():
@@ -42,3 +44,18 @@ while True:
         break
     else:
         print("Неверная команда. Попробуйте еще раз.")
+
+# Функция для добавления новой заметки
+def add_note():
+    title = input("Введите заголовок заметки: ")
+    body = input("Введите тело заметки: ")
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    note = {
+        'id': len(notes) + 1,
+        'title': title,
+        'body': body,
+        'timestamp': timestamp
+    }
+    notes.append(note)
+    save_notes(notes)
+    print("Заметка успешно сохранена.")
