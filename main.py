@@ -70,3 +70,19 @@ def delete_note():
             print("Заметка успешно удалена.")
             return
     print("Заметка с указанным ID не найдена.")
+
+# Функция для редактирования заметки
+def edit_note():
+    note_id = int(input("Введите ID заметки для редактирования: "))
+    for note in notes:
+        if note['id'] == note_id:
+            title = input("Введите новый заголовок заметки: ")
+            body = input("Введите новое тело заметки: ")
+            note['title'] = title
+            note['body'] = body
+            note['timestamp'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            save_notes(notes)
+            print("Заметка успешно отредактирована.")
+            return
+    print("Заметка с указанным ID не найдена.")
+
