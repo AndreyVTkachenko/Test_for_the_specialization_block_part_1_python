@@ -17,8 +17,67 @@ def save_notes(my_notes):
     with open('notes.json', 'w') as file:
         json.dump(my_notes, file, indent=4)
 
+
 # Загрузка заметок при запуске приложения
 notes = load_notes()
+
+
+# Функция для добавления новой заметки
+def add_note():
+    title = input("Введите заголовок заметки: ")
+    body = input("Введите тело заметки: ")
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    note = {
+        'id': len(notes) + 1,
+        'title': title,
+        'body': body,
+        'timestamp': timestamp
+    }
+    notes.append(note)
+    save_notes(notes)
+    print("Заметка успешно сохранена.")
+
+
+# Функция для удаления заметки
+def delete_note():
+    note_id = int(input("Введите ID заметки для удаления: "))
+    for note in notes:
+        if note['id'] == note_id:
+            notes.remove(note)
+            save_notes(notes)
+            print("Заметка успешно удалена.")
+            return
+    print("Заметка с указанным ID не найдена.")
+
+
+# Функция для редактирования заметки
+def edit_note():
+    note_id = int(input("Введите ID заметки для редактирования: "))
+    for note in notes:
+        if note['id'] == note_id:
+            title = input("Введите новый заголовок заметки: ")
+            body = input("Введите новое тело заметки: ")
+            note['title'] = title
+            note['body'] = body
+            note['timestamp'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            save_notes(notes)
+            print("Заметка успешно отредактирована.")
+            return
+    print("Заметка с указанным ID не найдена.")
+
+
+# Функция для отображения всех заметок
+def display_notes():
+    if not notes:
+        print("Нет доступных заметок.")
+    else:
+        for note in notes:
+            print(f"ID: {note['id']}")
+            print(f"Заголовок: {note['title']}")
+            print(f"Тело: {note['body']}")
+            print(f"Дата/время: {note['timestamp']}")
+            print()
+
 
 # Основной цикл программы
 while True:
@@ -44,57 +103,3 @@ while True:
         break
     else:
         print("Неверная команда. Попробуйте еще раз.")
-
-# Функция для добавления новой заметки
-def add_note():
-    title = input("Введите заголовок заметки: ")
-    body = input("Введите тело заметки: ")
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    note = {
-        'id': len(notes) + 1,
-        'title': title,
-        'body': body,
-        'timestamp': timestamp
-    }
-    notes.append(note)
-    save_notes(notes)
-    print("Заметка успешно сохранена.")
-
-# Функция для удаления заметки
-def delete_note():
-    note_id = int(input("Введите ID заметки для удаления: "))
-    for note in notes:
-        if note['id'] == note_id:
-            notes.remove(note)
-            save_notes(notes)
-            print("Заметка успешно удалена.")
-            return
-    print("Заметка с указанным ID не найдена.")
-
-# Функция для редактирования заметки
-def edit_note():
-    note_id = int(input("Введите ID заметки для редактирования: "))
-    for note in notes:
-        if note['id'] == note_id:
-            title = input("Введите новый заголовок заметки: ")
-            body = input("Введите новое тело заметки: ")
-            note['title'] = title
-            note['body'] = body
-            note['timestamp'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            save_notes(notes)
-            print("Заметка успешно отредактирована.")
-            return
-    print("Заметка с указанным ID не найдена.")
-
-# Функция для отображения всех заметок
-def display_notes():
-    if not notes:
-        print("Нет доступных заметок.")
-    else:
-        for note in notes:
-            print(f"ID: {note['id']}")
-            print(f"Заголовок: {note['title']}")
-            print(f"Тело: {note['body']}")
-            print(f"Дата/время: {note['timestamp']}")
-            print()
-
