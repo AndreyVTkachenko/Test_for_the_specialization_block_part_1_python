@@ -86,3 +86,15 @@ def edit_note():
             return
     print("Заметка с указанным ID не найдена.")
 
+# Функция для отображения всех заметок
+def display_notes():
+    if not notes:
+        print("Нет доступных заметок.")
+    else:
+        for note in notes:
+            print(f"ID: {note['id']}")
+            print(f"Заголовок: {note['title']}")
+            print(f"Тело: {note['body']}")
+            print(f"Дата/время: {note['timestamp']}")
+            print()
+
