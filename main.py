@@ -108,15 +108,29 @@ def filter_notes_by_date():
             print()
 
 
+# Функция для отображения определенной заметки по ID
+def display_specific_note():
+    note_id = int(input("Введите ID заметки для отображения: "))
+    for note in notes:
+        if note['id'] == note_id:
+            print(f"ID: {note['id']}")
+            print(f"Заголовок: {note['title']}")
+            print(f"Тело: {note['body']}")
+            print(f"Дата/время: {note['timestamp']}")
+            return
+    print("Заметка с указанным ID не найдена.")
+
+
 # Основной цикл программы
 while True:
     print("\nМеню:")
     print("1. Добавить заметку")
     print("2. Показать все заметки")
     print("3. Выборка заметок по дате")
-    print("4. Редактировать заметку")
-    print("5. Удалить заметку")
-    print("6. Выйти")
+    print("4. Показать определенную заметку по ID")
+    print("5. Редактировать заметку")
+    print("6. Удалить заметку")
+    print("0. Выйти")
 
     choice = input("Введите команду (1-5): ")
 
@@ -127,10 +141,12 @@ while True:
     elif choice == "3":
         filter_notes_by_date()
     elif choice == "4":
-        edit_note()
+        display_specific_note()
     elif choice == "5":
-        delete_note()
+        edit_note()
     elif choice == "6":
+        delete_note()
+    elif choice == "0":
         print("До новых встреч!")
         break
     else:
