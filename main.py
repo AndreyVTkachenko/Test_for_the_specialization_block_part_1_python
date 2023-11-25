@@ -59,3 +59,14 @@ def add_note():
     notes.append(note)
     save_notes(notes)
     print("Заметка успешно сохранена.")
+
+# Функция для удаления заметки
+def delete_note():
+    note_id = int(input("Введите ID заметки для удаления: "))
+    for note in notes:
+        if note['id'] == note_id:
+            notes.remove(note)
+            save_notes(notes)
+            print("Заметка успешно удалена.")
+            return
+    print("Заметка с указанным ID не найдена.")
