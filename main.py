@@ -132,7 +132,7 @@ while True:
     print("6. Удалить заметку")
     print("0. Выйти")
 
-    choice = input("Введите команду (1-5): ")
+    choice = input("Введите команду (0-6): ")
 
     if choice == "1":
         add_note()
