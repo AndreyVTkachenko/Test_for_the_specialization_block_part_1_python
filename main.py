@@ -85,14 +85,38 @@ def display_notes():
             print()
 
 
+# Функция для выборки заметок по дате
+def filter_notes_by_date():
+    date_str = input("Введите дату в формате YYYY-MM-DD: ")
+    try:
+        target_date = datetime.datetime.strptime(date_str, "%Y-%m-%d").date()
+    except ValueError:
+        print("Неверный формат даты. Попробуйте еще раз.")
+        return
+
+    filtered_notes = [note for note in notes if
+                      datetime.datetime.strptime(note['timestamp'], "%Y-%m-%d %H:%M:%S").date() == target_date]
+
+    if not filtered_notes:
+        print("Заметок на указанную дату нет.")
+    else:
+        for note in filtered_notes:
+            print(f"ID: {note['id']}")
+            print(f"Заголовок: {note['title']}")
+            print(f"Тело: {note['body']}")
+            print(f"Дата/время: {note['timestamp']}")
+            print()
+
+
 # Основной цикл программы
 while True:
     print("\nМеню:")
     print("1. Добавить заметку")
     print("2. Показать все заметки")
-    print("3. Редактировать заметку")
-    print("4. Удалить заметку")
-    print("5. Выйти")
+    print("3. Выборка заметок по дате")
+    print("4. Редактировать заметку")
+    print("5. Удалить заметку")
+    print("6. Выйти")
 
     choice = input("Введите команду (1-5): ")
 
@@ -101,10 +125,12 @@ while True:
     elif choice == "2":
         display_notes()
     elif choice == "3":
-        edit_note()
+        filter_notes_by_date()
     elif choice == "4":
-        delete_note()
+        edit_note()
     elif choice == "5":
+        delete_note()
+    elif choice == "6":
         print("До новых встреч!")
         break
     else:
