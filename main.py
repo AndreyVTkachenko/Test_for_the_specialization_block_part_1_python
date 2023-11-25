@@ -5,7 +5,7 @@ import json
 # Функция для загрузки заметок из файла
 def load_notes():
     try:
-        with open('notes.json', 'r') as file:
+        with open('notes.json', 'r', encoding='utf-8') as file:
             my_notes = json.load(file)
     except FileNotFoundError:
         my_notes = []
