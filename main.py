@@ -1,3 +1,23 @@
+import json
+
+# Функция для загрузки заметок из файла
+def load_notes():
+    try:
+        with open('notes.json', 'r') as file:
+            my_notes = json.load(file)
+    except FileNotFoundError:
+        my_notes = []
+    return my_notes
+
+
+# Функция для сохранения заметок в файл
+def save_notes(my_notes):
+    with open('notes.json', 'w') as file:
+        json.dump(my_notes, file, indent=4)
+
+# Загрузка заметок при запуске приложения
+notes = load_notes()
+
 # Основной цикл программы
 while True:
     print("\nМеню:")
