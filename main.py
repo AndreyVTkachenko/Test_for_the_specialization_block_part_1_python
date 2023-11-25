@@ -24,11 +24,17 @@ notes = load_notes()
 
 # Функция для добавления новой заметки
 def add_note():
+    if notes:
+        last_id = notes[-1]['id']
+    else:
+        last_id = 0
+
     title = input("Введите заголовок заметки: ")
     body = input("Введите тело заметки: ")
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
     note = {
-        'id': len(notes) + 1,
+        'id': last_id + 1,
         'title': title,
         'body': body,
         'timestamp': timestamp
