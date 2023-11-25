@@ -14,8 +14,8 @@ def load_notes():
 
 # Функция для сохранения заметок в файл
 def save_notes(my_notes):
-    with open('notes.json', 'w') as file:
-        json.dump(my_notes, file, indent=4)
+    with open('notes.json', 'w', encoding='utf-8') as file:
+        json.dump(my_notes, file, indent=4, ensure_ascii=False)
 
 
 # Загрузка заметок при запуске приложения
