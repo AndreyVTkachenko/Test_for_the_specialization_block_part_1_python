@@ -4,6 +4,11 @@ import datetime
 class NoteEditor:
     @staticmethod
     def add_note(notes):
+        """
+        Функция для добавления новой заметки
+        :param notes: все заметки
+        :return: создание заметки
+        """
         if notes:
             last_id = notes[-1]['id']
         else:
@@ -24,6 +29,11 @@ class NoteEditor:
 
     @staticmethod
     def delete_note(notes):
+        """
+        Функция для удаления заметки
+        :param notes: все заметки
+        :return: удаление заметки
+        """
         note_id = int(input("Введите ID заметки для удаления: "))
         for note in notes:
             if note['id'] == note_id:
@@ -34,6 +44,11 @@ class NoteEditor:
 
     @staticmethod
     def edit_note(notes):
+        """
+        Функция для редактирования заметки
+        :param notes: все заметки
+        :return: изменённая заметка
+        """
         note_id = int(input("Введите ID заметки для редактирования: "))
         for note in notes:
             if note['id'] == note_id:

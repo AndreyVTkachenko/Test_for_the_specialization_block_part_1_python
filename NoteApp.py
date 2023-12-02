@@ -5,11 +5,17 @@ from NoteManager import NoteManager
 
 class NoteApp:
     def __init__(self):
+        """
+        Создание связей между классами
+        """
         self.note_manager = NoteManager()
         self.note_printer = NotePrinter()
         self.note_editor = NoteEditor()
 
     def run(self):
+        """
+        Основной цикл программы
+        """
         while True:
             print("\nМеню:")
             print("1. Добавить заметку")
