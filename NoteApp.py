@@ -47,8 +47,4 @@ class NoteApp:
                 break
             else:
                 print("Неверная команда. Попробуйте еще раз.")
-
-# if __name__ == "__main__":
-#     app = NoteApp()
-#     app.run()
                 
